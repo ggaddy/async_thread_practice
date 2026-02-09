@@ -14,8 +14,8 @@ def get_api_for_loop(calls: int = 15) -> List[dict]:
 
 def get_api_threaded(calls: int = 15) -> List[dict]:
     with ThreadPoolExecutor(max_workers=15) as tpe:
-        tpe_futures = [tpe.submit(get_api, url=_API_URL) for i in range(calls)]
-        tpe_results = [f.result() for f in tpe_futures]
+        tpe_tasks = [tpe.submit(get_api, url=_API_URL) for i in range(calls)]
+        tpe_results = [f.result() for f in tpe_tasks]
     return tpe_results
 
 
